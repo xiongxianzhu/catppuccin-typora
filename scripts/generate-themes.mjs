@@ -244,6 +244,7 @@ div.code-tooltip-content {
 #write {
   font-size: 1rem;
   color: var(--ctp-text);
+  line-height: 1.625;
 }
 
 html,
@@ -330,7 +331,7 @@ a:hover {
   text-decoration: underline;
 }
 
-p,
+#write p,
 #write ul,
 #write dd,
 #write ol,
@@ -394,12 +395,33 @@ p,
 #write .md-fences {
   font-family: var(--monospace);
   font-size: 0.9rem;
+  line-height: 1.45;
   padding: 12px 14px 12px 16px;
   margin-bottom: 1.25rem;
   background: var(--ctp-mantle);
   color: var(--ctp-text);
   border: 1px solid var(--ctp-surface0);
   border-radius: 8px;
+}
+
+/* 代码块内若存在 <p>（或继承 body 的 rem 行高），避免出现「行间空一行」与光标错位 */
+#write .md-fences p,
+#write pre.md-fences p {
+  margin: 0 !important;
+}
+
+.cm-s-inner .CodeMirror-lines {
+  padding-left: 2px;
+}
+
+.cm-s-inner .CodeMirror-line,
+#write .md-fences .cm-line {
+  margin: 0 !important;
+  padding: 0;
+}
+
+.cm-s-inner .cm-content {
+  line-height: 1.45;
 }
 
 #write .md-fences .code-tooltip,
@@ -415,6 +437,7 @@ p,
 .cm-s-inner {
   background-color: var(--ctp-mantle);
   color: var(--ctp-text);
+  line-height: 1.45;
 }
 
 .cm-s-inner .CodeMirror-gutters {
@@ -427,7 +450,13 @@ p,
 }
 
 .cm-s-inner .CodeMirror-cursor {
-  border-left: 1px solid var(--ctp-rosewater);
+  border-left: 2px solid var(--ctp-rosewater) !important;
+}
+
+/* CodeMirror 6（若 Typora 使用） */
+#write .md-fences .cm-cursor,
+.cm-s-inner .cm-cursor {
+  border-left: 2px solid var(--ctp-rosewater) !important;
 }
 
 .cm-s-inner div.CodeMirror-selected {
@@ -545,10 +574,11 @@ p,
 .cm-s-typora-default {
   background-color: var(--ctp-base);
   color: var(--ctp-text);
+  line-height: 1.45;
 }
 
 .CodeMirror.cm-s-typora-default div.CodeMirror-cursor {
-  border-left: 2px solid var(--ctp-rosewater);
+  border-left: 2px solid var(--ctp-rosewater) !important;
 }
 
 .cm-s-typora-default .cm-header,
