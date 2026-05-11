@@ -1,0 +1,35 @@
+# Catppuccin for Typora
+
+> Typora editor themes for all four Catppuccin flavors (Mocha, Macchiato, Frappé, Latte). CSS is generated from a single Node script; tokens use `rgba()` instead of `color-mix()` for older WebKit (e.g. macOS Typora 1.13.x). PDF/print uses `@media print` with `.typora-export` so backgrounds stay `--ctp-base` and typography stays on palette variables, with TOC backgrounds flattened.
+
+Important notes:
+
+- After editing `scripts/generate-themes.mjs`, run `node scripts/generate-themes.mjs` at the repo root to refresh the four `catppuccin-*.css` files. Typora does not require Node to use the themes.
+- Theme filenames use lowercase ASCII (Typora requirement): `catppuccin-frappe.css`, etc.
+
+## Documentation
+
+- [README（简体中文，默认）](README.md): 安装、口味表、生成脚本、PDF/打印、参考与许可
+- [README.en.md（English）](README.en.md): Same content in English
+
+## Themes (generated CSS)
+
+- [catppuccin-mocha.css](catppuccin-mocha.css): Mocha (dark) — `:root` palette, Typora chrome variables, `#write`, CodeMirror `cm-s-inner` / source `cm-s-typora-default`, print block
+- [catppuccin-macchiato.css](catppuccin-macchiato.css): Macchiato flavor
+- [catppuccin-frappe.css](catppuccin-frappe.css): Frappé flavor
+- [catppuccin-latte.css](catppuccin-latte.css): Latte (light) flavor
+
+## Tooling
+
+- [generate-themes.mjs](scripts/generate-themes.mjs): Palettes, `derivedAlphaVars()` for `rgba` custom properties, `printExportStyles()`, `commonStyles()` string; writes four theme files
+
+## Configuration
+
+- [.gitignore](.gitignore): Ignore patterns for macOS, editors, and optional Node artifacts
+
+## Optional
+
+- [Write Custom Theme (Typora)](https://theme.typora.io/doc/Write-Custom-Theme/): Official Typora theme/CSS variable reference
+- [Catppuccin](https://github.com/catppuccin/catppuccin): Upstream palette and branding
+- [Catppuccin Palette](https://github.com/catppuccin/palette): Machine-readable colors and CSS variable naming
+- [Community Typora port (reference)](https://github.com/stephanlamoureux/typora-catppuccin): Separate implementation; useful for README/screenshot patterns only
