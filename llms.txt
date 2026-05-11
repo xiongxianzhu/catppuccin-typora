@@ -9,8 +9,9 @@ Important notes:
 
 ## Documentation
 
-- [README（简体中文，默认）](README.md): 安装、口味表、生成脚本、PDF/打印、参考与许可
+- [README（简体中文，默认）](README.md): 安装、口味表、生成脚本、PDF/打印、参考与许可（含 [llms.txt](llms.txt) 链接）
 - [README.en.md（English）](README.en.md): Same content in English
+- [llms.txt](llms.txt): Curated links for LLM/tooling consumption ([spec](https://llmstxt.org/))
 
 ## Themes (generated CSS)
 
@@ -26,6 +27,7 @@ Important notes:
 ## Configuration
 
 - [.gitignore](.gitignore): Ignore patterns for macOS, editors, and optional Node artifacts
+- [LICENSE](LICENSE): MIT License for theme CSS and `scripts/generate-themes.mjs` in this repository
 
 ## Optional
 
