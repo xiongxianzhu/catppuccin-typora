@@ -211,7 +211,8 @@ body {
   -ms-text-size-adjust: 100%;
   background: var(--bg-color);
   fill: currentColor;
-  line-height: 1.625rem;
+  /* 与 #write 同为无单位行高（对齐 github.css：body 与正文一套比例），避免 rem/比例混用导致列表 meta 行光标偏移 */
+  line-height: 1.625;
 }
 
 #write {
@@ -356,14 +357,30 @@ a:hover {
 /* 列表项内 <p> 继承 #write p 的大 margin 时，每项之间会出现过大空白 */
 #write li > p {
   margin: 0;
+  line-height: 1.625rem;
+}
+
+/*
+ * github.css 仅写 li p.first；当前 Typora 常只有 md-p，没有 .first，原选择器会完全不生效。
+ * 用 :first-of-type 兜底首段，并 width:100% 避免 inline-block 收缩导致行盒异常。
+ */
+#write li > p.first,
+#write li > p.md-p:first-of-type {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 1.625rem;
+  min-height: 1.625rem;
 }
 
 #write li > p + p {
   margin-top: 0.35em;
 }
 
-#write li > .md-line {
+/* md-line 在 li 内位于 p 下；与段落同源 rem 行高，避免插入条相对于 md-meta 偏高 */
+#write li p .md-line {
   margin: 0;
+  line-height: 1.625rem;
 }
 
 /* 列表项之间仅保留轻微间距（主要行高已有分隔） */
