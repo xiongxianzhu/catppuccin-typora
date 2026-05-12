@@ -14,6 +14,11 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-b7bdf8?style=for-the-badge&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8" alt="MIT"/></a>
 </p>
 
+<p align="center">
+  <img src="assets/cover/cover.png" width="780" alt="Catppuccin for Typora 主题封面预览"/>
+</p>
+<p align="center"><sub><i>封面 · Catppuccin Mocha 配色与编辑气质</i></sub></p>
+
 <p align="center"><b>简体中文</b> · <a href="README.en.md">English</a></p>
 
 > 将 [Catppuccin](https://github.com/catppuccin/catppuccin) 的柔和色谱接入 [Typora](https://typora.io)。半透明与选区使用预计算 <code>rgba()</code>，在旧版 WebKit（如 macOS 上 Typora **1.13.x**）上仍表现稳定，而不依赖 <code>color-mix()</code>。

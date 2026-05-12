@@ -14,6 +14,11 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-b7bdf8?style=for-the-badge&logoColor=d9e0ee&colorA=363a4f&colorB=b7bdf8" alt="MIT"/></a>
 </p>
 
+<p align="center">
+  <img src="assets/cover/cover.png" width="780" alt="Catppuccin for Typora — cover preview"/>
+</p>
+<p align="center"><sub><i>Cover · Catppuccin Mocha, editorial look</i></sub></p>
+
 <p align="center"><a href="README.md">简体中文</a> · <b>English</b></p>
 
 > [Catppuccin](https://github.com/catppuccin/catppuccin) pastel palettes for [Typora](https://typora.io). Semitransparent UI uses precomputed <code>rgba()</code> so older WebKit builds (e.g. Typora **1.13.x** on macOS) stay predictable—no reliance on <code>color-mix()</code>.
