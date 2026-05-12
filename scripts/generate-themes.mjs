@@ -353,12 +353,95 @@ a:hover {
   list-style: disc;
 }
 
+/* 列表项内 <p> 继承 #write p 的大 margin 时，每项之间会出现过大空白 */
+#write li > p {
+  margin: 0;
+}
+
+#write li > p + p {
+  margin-top: 0.35em;
+}
+
+#write li > .md-line {
+  margin: 0;
+}
+
+/* 列表项之间仅保留轻微间距（主要行高已有分隔） */
+#write ul > li,
+#write ol > li {
+  margin: 0.12em 0;
+}
+
+#write ul > li:first-child,
+#write ol > li:first-child {
+  margin-top: 0;
+}
+
+#write ul > li:last-child,
+#write ol > li:last-child {
+  margin-bottom: 0;
+}
+
+/* 嵌套列表不要再用 ul 的 1.5rem 上下 margin */
+#write li > ul,
+#write li > ol {
+  margin-top: 0.35em;
+  margin-bottom: 0;
+}
+
 #write blockquote {
   margin: 1.5rem 0;
-  padding: 0.5rem 1rem 0.5rem 1.25rem;
+  padding: 0.65rem 1rem 0.55rem 1.25rem;
   border-left: 4px solid var(--ctp-blue);
   color: var(--ctp-subtext1);
   background: var(--ctp-alpha-surface0-40);
+  line-height: 1.55;
+}
+
+/* blockquote 内段落勿继承 #write p 的 margin，否则会显得整块文字贴在上沿 */
+#write blockquote p {
+  margin: 0;
+}
+
+#write blockquote p + p {
+  margin-top: 0.45em;
+}
+
+#write blockquote .md-line {
+  margin: 0;
+}
+
+/* blockquote 内的列表勿继承 #write ul/ol 的大 margin */
+#write blockquote ul,
+#write blockquote ol {
+  margin: 0;
+  padding-left: 1.35rem;
+}
+
+#write blockquote li {
+  margin: 0.2em 0;
+}
+
+#write blockquote li:first-child {
+  margin-top: 0;
+}
+
+#write blockquote li:last-child {
+  margin-bottom: 0;
+}
+
+/* 任意直接子块（p / ul / ol）取消首尾外 margin，避免在有色背景里「悬在上沿」 */
+#write blockquote > :first-child {
+  margin-top: 0 !important;
+}
+
+#write blockquote > :last-child {
+  margin-bottom: 0 !important;
+}
+
+#write blockquote > ul:first-child li:first-child,
+#write blockquote > ol:first-child li:first-child {
+  margin-top: 0;
 }
 
 #write mark {
@@ -816,6 +899,15 @@ function printExportStyles() {
     color: var(--ctp-subtext1) !important;
     border-left-color: var(--ctp-blue) !important;
     background: var(--ctp-alpha-surface0-40) !important;
+  }
+
+  .typora-export #write blockquote ul,
+  .typora-export #write blockquote ol {
+    margin: 0 !important;
+  }
+
+  .typora-export #write blockquote > :last-child {
+    margin-bottom: 0 !important;
   }
 
   .typora-export #write mark {
