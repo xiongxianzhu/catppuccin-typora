@@ -35,6 +35,8 @@
   --ctp-mantle: #e6e9ef;
   --ctp-crust: #dce0e8;
   --ctp-mark-fg: #4c4f69;
+  --ctp-checkbox-checked: #007aff;
+  --ctp-checkbox-checked-hover: #3395ff;
 
   /* Pre-computed rgba — avoids color-mix() for older WebKit */
   --ctp-alpha-surface0-40: rgba(204, 208, 218, 0.4);
@@ -377,7 +379,7 @@ a:hover {
   background: var(--ctp-mantle);
   color: var(--ctp-text);
   border: 1px solid var(--ctp-surface0);
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 /* 代码块内若存在 <p>（或继承 body 的 rem 行高），避免出现「行间空一行」与光标错位 */
@@ -619,33 +621,109 @@ a:hover {
 }
 
 .md-task-list-item {
-  padding-left: 1.25rem;
+  padding-left: 1.4rem;
+  position: relative;
 }
 
 .md-task-list-item > input {
   -webkit-appearance: none;
-  margin-left: -1.3rem;
-  margin-top: 0.25rem;
+  appearance: none;
+  margin-left: -1.48rem;
+  margin-top: 0.14rem;
+  width: 1.0625rem;
+  height: 1.0625rem;
+  cursor: pointer;
+  vertical-align: middle;
+  flex-shrink: 0;
 }
 
 .md-task-list-item > input:before {
   content: "";
   display: inline-block;
-  width: 0.9rem;
-  height: 0.9rem;
+  box-sizing: border-box;
+  width: 1.0625rem;
+  height: 1.0625rem;
   vertical-align: middle;
-  border: 1px solid var(--ctp-overlay1);
-  background-color: var(--ctp-base);
-  border-radius: 3px;
+  border-radius: 5px;
+  border: 1.5px solid var(--ctp-overlay1);
+  background: var(--ctp-mantle);
+  box-shadow: inset 0 1px 0 var(--ctp-alpha-surface0-40);
+  /* 勿对 background 过渡：已选态 hover 换系统蓝底 + SVG，WebKit 插值会让勾「先缩后弹」 */
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.14s ease;
 }
 
+.md-task-list-item > input:hover:before {
+  border-color: var(--ctp-lavender);
+  background: var(--ctp-base);
+  box-shadow:
+    inset 0 1px 0 var(--ctp-alpha-surface0-45),
+    0 0 0 2px var(--ctp-alpha-blue-28);
+}
+
+.md-task-list-item > input:active:before {
+  transform: scale(0.94);
+}
+
+.md-task-list-item > input:focus-visible:before {
+  border-color: var(--ctp-lavender);
+  box-shadow:
+    inset 0 1px 0 var(--ctp-alpha-surface0-45),
+    0 0 0 2px var(--ctp-base),
+    0 0 0 4px var(--ctp-alpha-blue-38);
+}
+
+/* 已选：macOS 对话框风格 — 圆角蓝底 + SVG 白勾 */
 .md-task-list-item > input:checked:before,
 .md-task-list-item > input[checked]:before {
-  content: "✓";
-  font-size: 0.65rem;
-  line-height: 0.65rem;
+  content: "";
+  font-size: 0;
+  line-height: 0;
+  letter-spacing: 0;
   text-align: center;
-  color: var(--ctp-green);
+  border: none;
+  border-radius: 4px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2.85' stroke-linecap='round' stroke-linejoin='round' d='M3.85 8.15 6.9 11.1 12.35 4.55'/%3E%3C/svg%3E")
+      center / 72% 72% no-repeat,
+    var(--ctp-checkbox-checked);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.md-task-list-item > input:checked:hover:before,
+.md-task-list-item > input[checked]:hover:before {
+  border: none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2.85' stroke-linecap='round' stroke-linejoin='round' d='M3.85 8.15 6.9 11.1 12.35 4.55'/%3E%3C/svg%3E")
+      center / 72% 72% no-repeat,
+    var(--ctp-checkbox-checked-hover);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 0 0 2px var(--ctp-alpha-blue-28);
+}
+
+.md-task-list-item > input:checked:focus-visible:before,
+.md-task-list-item > input[checked]:focus-visible:before {
+  border: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 0 0 2px var(--ctp-base),
+    0 0 0 4px var(--ctp-alpha-blue-38);
+}
+
+.md-task-list-item > input:checked:focus-visible:hover:before,
+.md-task-list-item > input[checked]:focus-visible:hover:before {
+  border: none;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2.85' stroke-linecap='round' stroke-linejoin='round' d='M3.85 8.15 6.9 11.1 12.35 4.55'/%3E%3C/svg%3E")
+      center / 72% 72% no-repeat,
+    var(--ctp-checkbox-checked-hover);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 0 0 2px var(--ctp-base),
+    0 0 0 4px var(--ctp-alpha-blue-38);
 }
 
 .md-diagram-panel,
