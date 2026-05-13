@@ -245,6 +245,7 @@ a:hover {
 #write li > p.first,
 #write li > p.md-p:first-of-type {
   display: inline-block;
+  vertical-align: top;
   width: 100%;
   box-sizing: border-box;
   line-height: 1.625rem;
