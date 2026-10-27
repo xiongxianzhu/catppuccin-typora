@@ -37,6 +37,7 @@
   --ctp-mark-fg: #4c4f69;
   --ctp-checkbox-checked: #007aff;
   --ctp-checkbox-checked-hover: #3395ff;
+  --mermaid-theme: default;
 
   /* Pre-computed rgba — avoids color-mix() for older WebKit */
   --ctp-alpha-surface0-40: rgba(204, 208, 218, 0.4);
@@ -537,8 +538,8 @@ a:hover {
 }
 
 .cm-s-inner .cm-error {
-  color: #ffffff;
-  background-color: var(--ctp-red);
+  color: var(--ctp-red);
+  background-color: transparent;
 }
 
 .cm-s-inner .CodeMirror-matchingbracket {

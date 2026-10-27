@@ -667,8 +667,8 @@ a:hover {
 }
 
 .cm-s-inner .cm-error {
-  color: #ffffff;
-  background-color: var(--ctp-red);
+  color: var(--ctp-red);
+  background-color: transparent;
 }
 
 .cm-s-inner .CodeMirror-matchingbracket {
@@ -1085,7 +1085,8 @@ function buildTheme(flavor, p) {
  */
 `;
 
-  const root = `:root {\n${paletteBlock(p)}\n  --ctp-mark-fg: ${markForeground(flavor, p)};\n  --ctp-checkbox-checked: ${chk.checked};\n  --ctp-checkbox-checked-hover: ${chk.hover};\n${derivedAlphaVars(p)}${typoraRootMappings()}\n}\n`;
+  const mermaidTheme = flavor === "latte" ? "default" : "night";
+  const root = `:root {\n${paletteBlock(p)}\n  --ctp-mark-fg: ${markForeground(flavor, p)};\n  --ctp-checkbox-checked: ${chk.checked};\n  --ctp-checkbox-checked-hover: ${chk.hover};\n  --mermaid-theme: ${mermaidTheme};\n${derivedAlphaVars(p)}${typoraRootMappings()}\n}\n`;
 
   return header + root + commonStyles();
 }
